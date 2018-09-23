@@ -12,6 +12,12 @@
 		27E6A84E2155D47E004890D9 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A84D2155D47E004890D9 /* Hero.swift */; };
 		27E6A8502155D7D7004890D9 /* Warrior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A84F2155D7D7004890D9 /* Warrior.swift */; };
 		27E6A8522155DA8A004890D9 /* Sorceress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A8512155DA8A004890D9 /* Sorceress.swift */; };
+		27E6A8542155DCE1004890D9 /* Thief.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A8532155DCE1004890D9 /* Thief.swift */; };
+		27E6A8562155DF98004890D9 /* Monster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A8552155DF98004890D9 /* Monster.swift */; };
+		27E6A8582155E59C004890D9 /* Ogre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A8572155E59C004890D9 /* Ogre.swift */; };
+		27E6A85A2155E5D6004890D9 /* Gremlin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A8592155E5D6004890D9 /* Gremlin.swift */; };
+		27E6A85C2155E5E2004890D9 /* Skeleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A85B2155E5E2004890D9 /* Skeleton.swift */; };
+		27E6A85E2155E712004890D9 /* HeroesVersusMonsters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6A85D2155E712004890D9 /* HeroesVersusMonsters.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,6 +39,12 @@
 		27E6A84D2155D47E004890D9 /* Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
 		27E6A84F2155D7D7004890D9 /* Warrior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Warrior.swift; sourceTree = "<group>"; };
 		27E6A8512155DA8A004890D9 /* Sorceress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sorceress.swift; sourceTree = "<group>"; };
+		27E6A8532155DCE1004890D9 /* Thief.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thief.swift; sourceTree = "<group>"; };
+		27E6A8552155DF98004890D9 /* Monster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monster.swift; sourceTree = "<group>"; };
+		27E6A8572155E59C004890D9 /* Ogre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ogre.swift; sourceTree = "<group>"; };
+		27E6A8592155E5D6004890D9 /* Gremlin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gremlin.swift; sourceTree = "<group>"; };
+		27E6A85B2155E5E2004890D9 /* Skeleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skeleton.swift; sourceTree = "<group>"; };
+		27E6A85D2155E712004890D9 /* HeroesVersusMonsters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesVersusMonsters.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +82,12 @@
 				27E6A84D2155D47E004890D9 /* Hero.swift */,
 				27E6A84F2155D7D7004890D9 /* Warrior.swift */,
 				27E6A8512155DA8A004890D9 /* Sorceress.swift */,
+				27E6A8532155DCE1004890D9 /* Thief.swift */,
+				27E6A8552155DF98004890D9 /* Monster.swift */,
+				27E6A8572155E59C004890D9 /* Ogre.swift */,
+				27E6A8592155E5D6004890D9 /* Gremlin.swift */,
+				27E6A85B2155E5E2004890D9 /* Skeleton.swift */,
+				27E6A85D2155E712004890D9 /* HeroesVersusMonsters.swift */,
 			);
 			path = "Task 2: Inheritance";
 			sourceTree = "<group>";
@@ -131,11 +149,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27E6A85E2155E712004890D9 /* HeroesVersusMonsters.swift in Sources */,
+				27E6A85A2155E5D6004890D9 /* Gremlin.swift in Sources */,
 				274D47B0214C5BA300E25623 /* main.swift in Sources */,
 				27E6A8522155DA8A004890D9 /* Sorceress.swift in Sources */,
+				27E6A8582155E59C004890D9 /* Ogre.swift in Sources */,
+				27E6A8542155DCE1004890D9 /* Thief.swift in Sources */,
 				274D47B7214C5C3900E25623 /* DungeonCharacter.swift in Sources */,
+				27E6A85C2155E5E2004890D9 /* Skeleton.swift in Sources */,
 				27E6A8502155D7D7004890D9 /* Warrior.swift in Sources */,
 				27E6A84E2155D47E004890D9 /* Hero.swift in Sources */,
+				27E6A8562155DF98004890D9 /* Monster.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

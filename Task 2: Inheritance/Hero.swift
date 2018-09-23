@@ -13,15 +13,15 @@ class Hero: DungeonCharacter {
     //number of attacks/special operations a Hero gets to perform per round
     var turns_per_round: Int
     
-    init(name: String, hit_points: Int, attackSpeed: Int, damageRangeMax: Int, damageRangeMin: Int, chanceToHit: Double,  block: Double, turns_per_round: Int) {
+    init(name: String, hit_points: Int, attackSpeed: Int, damageMax: Int, damageMin: Int, chanceToHit: Double,  block: Double, turns_per_round: Int) {
         self.block = block
         self.turns_per_round = turns_per_round
-        super.init(name: name, hit_points: hit_points, attackSpeed: attackSpeed, damageRangeMax: damageRangeMax, damageRangeMin: damageRangeMin, chanceToHit: chanceToHit)
+        super.init(name: name, hit_points: hit_points, attackSpeed: attackSpeed, damageMax: damageMax, damageMin: damageMin, chanceToHit: chanceToHit)
     }
     
-    func getCharacterName () -> String {
+    static func getCharacterName () -> String {
         
-        print("What is your character's name?")
+        print("What is the name of your hero?")
         let response = readLine()
         var characterName = ""
         while (characterName == "") {

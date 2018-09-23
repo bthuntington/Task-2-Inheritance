@@ -9,8 +9,16 @@
 import Foundation
 
 class Sorceress: Hero {
-    init(name: String, hit_points: Int, attackSpeed: Int, damageRangeMax: Int, damageRangeMin: Int, chanceToHit: Double, damagblock: Double, block: Double, turns_per_round: Int) {
-    super.init(name: name, hit_points: hit_points, attackSpeed: attackSpeed, damageRangeMax: damageRangeMax, damageRangeMin: damageRangeMin, chanceToHit: chanceToHit, block: block, turns_per_round: turns_per_round)
+    init(name: String) {
+
+        let hit_points = 75
+        let attackSpeed = 6
+        let chanceToHit = 0.8
+        let damageMin = 20
+        let damageMax = 40
+        let block = 0.4
+        let turns_per_round = 0
+    super.init(name: name, hit_points: hit_points, attackSpeed: attackSpeed, damageMax: damageMax, damageMin: damageMin, chanceToHit: chanceToHit, block: block, turns_per_round: turns_per_round)
     }
     //sorceress special attack
     func heal () {

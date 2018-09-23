@@ -19,17 +19,17 @@ class DungeonCharacter {
     var name: String
     var hit_points: Int
     var attackSpeed: Int
-    var damageRangeMax: Int
-    var damageRangeMin: Int
+    var damageMax: Int
+    var damageMin: Int
     var chanceToHit: Double
 
     
-    init(name: String, hit_points: Int, attackSpeed: Int, damageRangeMax: Int, damageRangeMin: Int, chanceToHit: Double) {
+    init(name: String, hit_points: Int, attackSpeed: Int, damageMax: Int, damageMin: Int, chanceToHit: Double) {
         self.name = name
         self.hit_points = hit_points
         self.attackSpeed = attackSpeed
-        self.damageRangeMax = damageRangeMax
-        self.damageRangeMin = damageRangeMin
+        self.damageMax = damageMax
+        self.damageMin = damageMin
         self.chanceToHit = chanceToHit
     }
     
@@ -38,19 +38,21 @@ class DungeonCharacter {
     //User should be informed of what happens
     //If it cannot attack, a message should be displayed that says the attack failed
     
-    func attack() {
+    func attack() -> Int {
         var attackChance:Double = Double(arc4random_uniform(UInt32(100))) + 1
         attackChance = attackChance / 100
         print(attackChance)
         print(chanceToHit)
+        var difference = damageMax - damageMin
+        var hitDamage = Int(arc4random_uniform(UInt32(difference))) + damageMin
         if (attackChance >= chanceToHit) {
             //did they block- do the same things as attackChance
-            var difference = damageRangeMax - damageRangeMin
-            var hitDamage = Int(arc4random_uniform(UInt32(difference))) + damageRangeMin
             //damage applied to opponent
-            print("You hit opponent for \(hitDamage) points")
+            print("Opponent hit for \(hitDamage) points")
+            return hitDamage
         } else {
-            print("Attack failed. You missed")
+            print("Attack failed.")
+            return hitDamage
         }
     }
     
