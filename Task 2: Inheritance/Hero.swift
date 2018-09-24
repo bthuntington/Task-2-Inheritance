@@ -12,10 +12,13 @@ class Hero: DungeonCharacter {
     var block: Double
     //number of attacks/special operations a Hero gets to perform per round
     var turns_per_round: Int
+    //describes which hero class character is
+    var heroClass: String
     
-    init(name: String, hitPoints: Int, attackSpeed: Int, damageMax: Int, damageMin: Int, chanceToHit: Double,  block: Double, turns_per_round: Int) {
+    init(name: String, hitPoints: Int, attackSpeed: Int, damageMax: Int, damageMin: Int, chanceToHit: Double, block: Double, turns_per_round: Int, heroClass: String) {
         self.block = block
         self.turns_per_round = turns_per_round
+        self.heroClass = heroClass
         super.init(name: name, hitPoints: hitPoints, attackSpeed: attackSpeed, damageMax: damageMax, damageMin: damageMin, chanceToHit: chanceToHit)
     }
     
@@ -42,7 +45,7 @@ class Hero: DungeonCharacter {
         print(hero.chanceToHit)
         let difference = hero.damageMax - hero.damageMin
         let hitDamage = Int(arc4random_uniform(UInt32(difference))) + hero.damageMin
-        if (attackChance >= hero.chanceToHit) {
+        if (attackChance <= hero.chanceToHit) {
             //did they block- do the same things as attackChance
             //damage applied to opponent
             print("Opponent hit for \(hitDamage) points")

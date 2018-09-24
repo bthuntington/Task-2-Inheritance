@@ -38,21 +38,29 @@ class Monster: DungeonCharacter {
     }
     
     func attackHero(monster: Monster, hero: Hero) {
+        
+        print("""
+        --------It's \(monster.name)'s turn
+        """)
         var attackChance:Double = Double(arc4random_uniform(UInt32(100))) + 1
         attackChance = attackChance / 100
         print(attackChance)
         print(monster.chanceToHit)
         let difference = hero.damageMax - monster.damageMin
         let hitDamage = Int(arc4random_uniform(UInt32(difference))) + monster.damageMin
-        if (attackChance >= monster.chanceToHit) {
+        if (attackChance <= monster.chanceToHit) {
             //did they block- do the same things as attackChance
-            //damage applied to opponent
-            print("Opponent hit for \(hitDamage) points")
-            hero.hitPoints -= hitDamage
-            //return hitDamage
+            var blockChance:Double = Double(arc4random_uniform(UInt32(100))) + 1
+            blockChance = attackChance / 100
+            if blockChance < hero.block {
+                //damage applied to hero
+                print("\(monster.name) hit \(hero.name) for \(hitDamage) points")
+                hero.hitPoints -= hitDamage
+            } else {
+                print("\(hero.name) blocked attack!")
+            }
         } else {
-            print("Attack failed.")
-            //return hitDamage
+            print("\(monster.name)'s attack failed.")
         }
     }
 

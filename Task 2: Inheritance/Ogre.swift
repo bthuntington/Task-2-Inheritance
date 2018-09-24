@@ -21,11 +21,11 @@ class Ogre: Monster {
         let hitPoints = 200
         let attackSpeed = 2
         let chanceToHit = 0.6
-        let damageMax = 30
-        let damageMin = 60
+        let damageMax = 60
+        let damageMin = 30
         let chanceToHeal = 0.1
-        let healMax = 30
-        let healMin = 60
+        let healMax = 60
+        let healMin = 30
         
         super.init(chanceToHeal: chanceToHeal, healMax: healMax, healMin: healMin, name: name, hitPoints: hitPoints, attackSpeed: attackSpeed, damageMax: damageMax, damageMin: damageMin, chanceToHit: chanceToHit)
     }

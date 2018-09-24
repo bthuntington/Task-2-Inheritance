@@ -11,6 +11,7 @@ import Foundation
 class Warrior: Hero {
     
     init(name: String) {
+        let heroClass = "Warrior"
         let hitPoints = 25
         let attackSpeed = 4
         let chanceToHit = 0.8
@@ -18,14 +19,7 @@ class Warrior: Hero {
         let damageMax = 60
         let block = 0.2
         let turns_per_round = 0
-        super.init(name: name, hitPoints: hitPoints, attackSpeed: attackSpeed, damageMax: damageMax, damageMin: damageMin, chanceToHit: chanceToHit, block: block, turns_per_round: turns_per_round)
-//        self.name = name
-//        self.hit_points = hit_points
-//        self.attackSpeed = attackSpeed
-//        self.chanceToHit = chanceToHit
-//        self.damageMin = damageMin
-//        self.damageMax = damageMax
-//        self.block = block
+        super.init(name: name, hitPoints: hitPoints, attackSpeed: attackSpeed, damageMax: damageMax, damageMin: damageMin, chanceToHit: chanceToHit, block: block, turns_per_round: turns_per_round, heroClass: heroClass)
 //        
     }
     
@@ -34,7 +28,7 @@ class Warrior: Hero {
         var attackChance:Double = Double(arc4random_uniform(UInt32(100))) + 1
         attackChance = attackChance / 100
         if(attackChance <= 0.4) {
-            var hitDamage = Int(arc4random_uniform(UInt32(50))) + 75
+            let hitDamage = Int(arc4random_uniform(UInt32(50))) + 75
             print("Wow! You did a crushing blow!")
             print("Your attack did \(hitDamage) damage")
             //add damage to enemy
@@ -44,4 +38,43 @@ class Warrior: Hero {
             print("Whoops, looks like you slipped on a banana peel and your attack failed.")
         }
     }
+    
+    func attack (hero: Warrior, opponent: Monster) -> Int {
+        var playerTurns = 1
+        while playerTurns == 1 {
+            print("""
+                
+                ~~~~~ It's \(hero.name)'s turn (1 of 1)
+                
+                Please choose your attack from the following menu
+                1) Normal attack
+                2) Special attack
+                3) Quit game
+                """)
+            let choice = readLine()
+            if let attackChoice = Int(choice!) {
+                if attackChoice == 1 {
+                    hero.attackMonster(hero: hero, monster: opponent)
+                    
+                    if opponent.hitPoints <= 0 {
+                        print("You killed \(opponent.name)")
+                        playerTurns = 0
+                    }
+                    playerTurns = 0
+                } else if attackChoice == 2 {
+                    hero.crushingBlow(warrior: hero, monster: opponent)
+                    playerTurns = 0
+                } else {
+                    print("Okay, goodbye")
+                    return 1
+                }
+            } else {
+                print("Wrong input")
+            }
+            print("Press enter to continue...")
+            let response = readLine()
+        }
+        return 0
+    }
+
 }
