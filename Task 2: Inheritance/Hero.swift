@@ -13,10 +13,10 @@ class Hero: DungeonCharacter {
     //number of attacks/special operations a Hero gets to perform per round
     var turns_per_round: Int
     
-    init(name: String, hit_points: Int, attackSpeed: Int, damageMax: Int, damageMin: Int, chanceToHit: Double,  block: Double, turns_per_round: Int) {
+    init(name: String, hitPoints: Int, attackSpeed: Int, damageMax: Int, damageMin: Int, chanceToHit: Double,  block: Double, turns_per_round: Int) {
         self.block = block
         self.turns_per_round = turns_per_round
-        super.init(name: name, hit_points: hit_points, attackSpeed: attackSpeed, damageMax: damageMax, damageMin: damageMin, chanceToHit: chanceToHit)
+        super.init(name: name, hitPoints: hitPoints, attackSpeed: attackSpeed, damageMax: damageMax, damageMin: damageMin, chanceToHit: chanceToHit)
     }
     
     static func getCharacterName () -> String {
@@ -33,5 +33,24 @@ class Hero: DungeonCharacter {
             }
         }
         return characterName
+    }
+    
+    func attackMonster (hero: Hero, monster: Monster) {
+        var attackChance:Double = Double(arc4random_uniform(UInt32(100))) + 1
+        attackChance = attackChance / 100
+        print(attackChance)
+        print(hero.chanceToHit)
+        let difference = hero.damageMax - hero.damageMin
+        let hitDamage = Int(arc4random_uniform(UInt32(difference))) + hero.damageMin
+        if (attackChance >= hero.chanceToHit) {
+            //did they block- do the same things as attackChance
+            //damage applied to opponent
+            print("Opponent hit for \(hitDamage) points")
+            monster.hitPoints -= hitDamage
+            //return hitDamage
+        } else {
+            print("Attack failed.")
+            //return hitDamage
+        }
     }
 }

@@ -13,11 +13,11 @@ class Monster: DungeonCharacter {
     var healMax: Int
     var healMin: Int
     
-    init(chanceToHeal: Double, healMax: Int, healMin: Int, name: String, hit_points: Int, attackSpeed: Int, damageMax: Int, damageMin: Int, chanceToHit: Double) {
+    init(chanceToHeal: Double, healMax: Int, healMin: Int, name: String, hitPoints: Int, attackSpeed: Int, damageMax: Int, damageMin: Int, chanceToHit: Double) {
         self.chanceToHeal = chanceToHeal
         self.healMax = healMax
         self.healMin = healMin
-        super.init(name: name, hit_points: hit_points, attackSpeed: attackSpeed, damageMax: healMax, damageMin: healMin, chanceToHit: chanceToHit)
+        super.init(name: name, hitPoints: hitPoints, attackSpeed: attackSpeed, damageMax: healMax, damageMin: healMin, chanceToHit: chanceToHit)
         
     }
     //a Monster has a chance to heal after any attack that causes a loss of hit points. This should be checked after the Monster has been attacked and hit points have been lost. Note that if the hit points lost kill the Monster, it cannot heal itself!
@@ -36,7 +36,26 @@ class Monster: DungeonCharacter {
             print("Attack failed.")
         }
     }
+    
+    func attackHero(monster: Monster, hero: Hero) {
+        var attackChance:Double = Double(arc4random_uniform(UInt32(100))) + 1
+        attackChance = attackChance / 100
+        print(attackChance)
+        print(monster.chanceToHit)
+        let difference = hero.damageMax - monster.damageMin
+        let hitDamage = Int(arc4random_uniform(UInt32(difference))) + monster.damageMin
+        if (attackChance >= monster.chanceToHit) {
+            //did they block- do the same things as attackChance
+            //damage applied to opponent
+            print("Opponent hit for \(hitDamage) points")
+            hero.hitPoints -= hitDamage
+            //return hitDamage
+        } else {
+            print("Attack failed.")
+            //return hitDamage
+        }
+    }
 
 }
 
-
+var monsterArray = [skeleton1, ogre1, gremlin1]

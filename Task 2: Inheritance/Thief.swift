@@ -10,7 +10,7 @@ import Foundation
 
 class Thief: Hero {
     init(name: String) {
-        let hit_points = 75
+        let hitPoints = 75
         let attackSpeed = 6
         let chanceToHit = 0.8
         let damageMin = 20
@@ -18,7 +18,7 @@ class Thief: Hero {
         let block = 0.4
         let turns_per_round = 0
         
-        super.init(name: name, hit_points: hit_points, attackSpeed: attackSpeed, damageMax: damageMax, damageMin: damageMin, chanceToHit: chanceToHit, block: block, turns_per_round: turns_per_round)
+        super.init(name: name, hitPoints: hitPoints, attackSpeed: attackSpeed, damageMax: damageMax, damageMin: damageMin, chanceToHit: chanceToHit, block: block, turns_per_round: turns_per_round)
     }
     
     func surpriseAttack() {

@@ -11,14 +11,14 @@ import Foundation
 class Warrior: Hero {
     
     init(name: String) {
-        let hit_points = 25
+        let hitPoints = 25
         let attackSpeed = 4
         let chanceToHit = 0.8
         let damageMin = 35
         let damageMax = 60
         let block = 0.2
         let turns_per_round = 0
-        super.init(name: name, hit_points: hit_points, attackSpeed: attackSpeed, damageMax: damageMax, damageMin: damageMin, chanceToHit: chanceToHit, block: block, turns_per_round: turns_per_round)
+        super.init(name: name, hitPoints: hitPoints, attackSpeed: attackSpeed, damageMax: damageMax, damageMin: damageMin, chanceToHit: chanceToHit, block: block, turns_per_round: turns_per_round)
 //        self.name = name
 //        self.hit_points = hit_points
 //        self.attackSpeed = attackSpeed
@@ -30,17 +30,18 @@ class Warrior: Hero {
     }
     
     //warrior's special attack
-    func crushingBlow () {
+    func crushingBlow (warrior: Warrior, monster: Monster) {
         var attackChance:Double = Double(arc4random_uniform(UInt32(100))) + 1
         attackChance = attackChance / 100
         if(attackChance <= 0.4) {
-            var hitDamage = Int(arc4random_uniform(UInt32(100))) + 75
+            var hitDamage = Int(arc4random_uniform(UInt32(50))) + 75
             print("Wow! You did a crushing blow!")
             print("Your attack did \(hitDamage) damage")
             //add damage to enemy
+            monster.hitPoints -= hitDamage
             
         } else {
-            
+            print("Whoops, looks like you slipped on a banana peel and your attack failed.")
         }
     }
 }

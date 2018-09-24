@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Orgre: Monster {
+class Ogre: Monster {
     //    Hit points: 200
     //    Attack speed: 2
     //    Chance to hit: 0.6 (60%)
@@ -17,8 +17,8 @@ class Orgre: Monster {
     //    Chance to heal: 0.1 (10%)
     //    Minimum heal points: 30
     //    Maximum heal points: 60
-    override init(chanceToHeal: Double, healMax: Int, healMin: Int, name: String, hit_points: Int, attackSpeed: Int, damageMax: Int, damageMin: Int, chanceToHit: Double) {
-        let hit_Points = 200
+    init(name: String) {
+        let hitPoints = 200
         let attackSpeed = 2
         let chanceToHit = 0.6
         let damageMax = 30
@@ -27,7 +27,11 @@ class Orgre: Monster {
         let healMax = 30
         let healMin = 60
         
-        super.init(chanceToHeal: chanceToHeal, healMax: healMax, healMin: healMin, name: name, hit_points: hit_points, attackSpeed: attackSpeed, damageMax: damageMax, damageMin: damageMin, chanceToHit: chanceToHit)
+        super.init(chanceToHeal: chanceToHeal, healMax: healMax, healMin: healMin, name: name, hitPoints: hitPoints, attackSpeed: attackSpeed, damageMax: damageMax, damageMin: damageMin, chanceToHit: chanceToHit)
     }
     
 }
+
+var ogre1 = Ogre(name: "Wanda the Ogre")
+var ogre2 = Ogre(name: "Rambo the Ogre")
+var ogre3 = Ogre(name: "Val the Ogre")

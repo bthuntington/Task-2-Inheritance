@@ -17,16 +17,16 @@ import Foundation
 
 class DungeonCharacter {
     var name: String
-    var hit_points: Int
+    var hitPoints: Int
     var attackSpeed: Int
     var damageMax: Int
     var damageMin: Int
     var chanceToHit: Double
 
     
-    init(name: String, hit_points: Int, attackSpeed: Int, damageMax: Int, damageMin: Int, chanceToHit: Double) {
+    init(name: String, hitPoints: Int, attackSpeed: Int, damageMax: Int, damageMin: Int, chanceToHit: Double) {
         self.name = name
-        self.hit_points = hit_points
+        self.hitPoints = hitPoints
         self.attackSpeed = attackSpeed
         self.damageMax = damageMax
         self.damageMin = damageMin
@@ -38,7 +38,7 @@ class DungeonCharacter {
     //User should be informed of what happens
     //If it cannot attack, a message should be displayed that says the attack failed
     
-    func attack() -> Int {
+    func attack (character1: DungeonCharacter, character2: DungeonCharacter) {
         var attackChance:Double = Double(arc4random_uniform(UInt32(100))) + 1
         attackChance = attackChance / 100
         print(attackChance)
@@ -49,10 +49,10 @@ class DungeonCharacter {
             //did they block- do the same things as attackChance
             //damage applied to opponent
             print("Opponent hit for \(hitDamage) points")
-            return hitDamage
+            //return hitDamage
         } else {
             print("Attack failed.")
-            return hitDamage
+            //return hitDamage
         }
     }
     

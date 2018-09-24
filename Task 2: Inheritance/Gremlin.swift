@@ -9,8 +9,8 @@
 import Foundation
 
 class Gremlin: Monster {
-    override init(chanceToHeal: Double, healMax: Int, healMin: Int, name: String, hit_points: Int, attackSpeed: Int, damageMax: Int, damageMin: Int, chanceToHit: Double) {
-        let hit_Points = 70
+    init(name: String) {
+        let hitPoints = 70
         let attackSpeed = 5
         let chanceToHit = 0.8
         let damageMin = 15
@@ -19,12 +19,17 @@ class Gremlin: Monster {
         let healMin = 20
         let healMax = 40
         
-        super.init(chanceToHeal: chanceToHeal, healMax: healMax, healMin: healMin, name: name, hit_points: hit_points, attackSpeed: attackSpeed, damageMax: damageMax, damageMin: damageMin, chanceToHit: chanceToHit)
+        super.init(chanceToHeal: chanceToHeal, healMax: healMax, healMin: healMin, name: name, hitPoints: hitPoints, attackSpeed: attackSpeed, damageMax: damageMax, damageMin: damageMin, chanceToHit: chanceToHit)
     }
     
-    override func attack() -> Int {
+    func attack() -> Int {
         //change code to fit gremlin
         return 0
     }
 
 }
+
+var gremlin1 = Gremlin(name: "Lief the Gremlin")
+var gremlin2 = Gremlin(name: "Jamie the Gremlin")
+var gremlin3 = Gremlin(name: "Indigo the Gremlin")
+
