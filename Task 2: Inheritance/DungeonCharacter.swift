@@ -8,12 +8,6 @@
 
 import Foundation
 
-//Name: string
-//Hit points: integer (how much damage a character can take before it dies)
-//Attack speed: integer (1 is the slowest)
-//Damage range: two integers (minimum and maximum amount of damage a character can do on an attack)
-//Chance to hit opponent when attacking: double
-//Anything else you deem necessary
 
 class DungeonCharacter {
     var name: String
