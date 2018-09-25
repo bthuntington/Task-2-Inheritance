@@ -84,7 +84,7 @@ class Monster: DungeonCharacter {
     }
 
 }
-
+// monster arrays
 var monsterArray1 = [skeleton1, ogre1, gremlin1]
 var monsterArray2 = [skeleton2, ogre2, gremlin2]
 var monsterArray3 = [skeleton3, ogre3, gremlin3]
