@@ -30,7 +30,6 @@ class Hero: DungeonCharacter {
         while (characterName == "") {
             if let name = response {
                 characterName = name
-                print("Great, you named your hero \(characterName)")
             } else {
                 print("That name doesn't work")
             }
@@ -43,17 +42,22 @@ class Hero: DungeonCharacter {
         attackChance = attackChance / 100
         print(attackChance)
         print(hero.chanceToHit)
+        // determines if the attack succeeds
         let difference = hero.damageMax - hero.damageMin
         let hitDamage = Int(arc4random_uniform(UInt32(difference))) + hero.damageMin
+        // attack succeeds
         if (attackChance <= hero.chanceToHit) {
             //did they block- do the same things as attackChance
             //damage applied to opponent
-            print("\(monster.name) hit for \(hitDamage) points")
+            print("\(hero.name) hit \(monster.name) for \(hitDamage) damage points")
             monster.hitPoints -= hitDamage
-            //return hitDamage
+            if monster.hitPoints > 0 {
+                monster.heal(monster: monster)
+            }
+            // attack fails
         } else {
             print("Attack failed.")
-            //return hitDamage
+            monster.heal(monster: monster)
         }
     }
 }

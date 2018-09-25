@@ -12,35 +12,38 @@ class Monster: DungeonCharacter {
     var chanceToHeal: Double
     var healMax: Int
     var healMin: Int
+    var monsterType: String
     
-    init(chanceToHeal: Double, healMax: Int, healMin: Int, name: String, hitPoints: Int, attackSpeed: Int, damageMax: Int, damageMin: Int, chanceToHit: Double) {
+    init(chanceToHeal: Double, healMax: Int, healMin: Int, monsterType: String, name: String, hitPoints: Int, attackSpeed: Int, damageMax: Int, damageMin: Int, chanceToHit: Double) {
         self.chanceToHeal = chanceToHeal
         self.healMax = healMax
         self.healMin = healMin
+        self.monsterType = monsterType
         super.init(name: name, hitPoints: hitPoints, attackSpeed: attackSpeed, damageMax: healMax, damageMin: healMin, chanceToHit: chanceToHit)
         
     }
     //a Monster has a chance to heal after any attack that causes a loss of hit points. This should be checked after the Monster has been attacked and hit points have been lost. Note that if the hit points lost kill the Monster, it cannot heal itself!
-    func heal() {
+    func heal(monster: Monster) {
         var healChance:Double = Double(arc4random_uniform(UInt32(100))) + 1
         healChance = healChance / 100
         print(healChance)
         print(chanceToHeal)
         let difference = healMax - healMin
         let healing = Int(arc4random_uniform(UInt32(difference))) + damageMin
-        if (healChance >= chanceToHeal) {
+        if (healChance <= chanceToHeal) {
             //did they block- do the same things as attackChance
             //healing applied to monster
-            print("Monster healed for \(healing) points")
+            print("\(monster.name) healed for \(healing) points")
         } else {
-            print("Attack failed.")
+            print("\(monster.name) cannot heal at this time.")
         }
     }
+    
     
     func attackHero(monster: Monster, hero: Hero) {
         
         print("""
-        ~~~~~~~~ It's \(monster.name)'s turn
+        ~~~~~~It's \(monster.name)'s turn ~~~~~
             \(hero.name) has \(hero.hitPoints) HP
             \(monster.name) has \(monster.hitPoints) HP
             
@@ -51,7 +54,15 @@ class Monster: DungeonCharacter {
         print(monster.chanceToHit)
         let difference = hero.damageMax - monster.damageMin
         let hitDamage = Int(arc4random_uniform(UInt32(difference))) + monster.damageMin
-        if (attackChance <= monster.chanceToHit) {
+        if attackChance <= 0.3 {
+            if monster.monsterType == "Ogre" {
+                Ogre.smash(monster: monster, hero: hero)
+            } else if monster.monsterType == "Gremlin" {
+                Gremlin.bite(monster: monster, hero: hero)
+            } else if monster.monsterType == "Skeleton" {
+                Skeleton.rattle(monster: monster, hero: hero)
+            }
+        } else if (attackChance <= monster.chanceToHit) {
             //did they block- do the same things as attackChance
             var blockChance:Double = Double(arc4random_uniform(UInt32(100))) + 1
             blockChance = blockChance / 100
@@ -60,6 +71,7 @@ class Monster: DungeonCharacter {
                 //damage applied to hero
                 print("\(monster.name) hit \(hero.name) for \(hitDamage) points")
                 hero.hitPoints -= hitDamage
+
             } else {
                 print("\(hero.name) blocked attack!")
             }

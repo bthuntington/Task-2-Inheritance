@@ -19,8 +19,22 @@ class Skeleton: Monster {
         let chanceToHeal = 0.3
         let healMin = 30
         let healMax = 50
+        let monsterType = "Skeleton"
         
-        super.init(chanceToHeal: chanceToHeal, healMax: healMax, healMin: healMin, name: name, hitPoints: hitPoints, attackSpeed: attackSpeed, damageMax: damageMax, damageMin: damageMin, chanceToHit: chanceToHit)
+        super.init(chanceToHeal: chanceToHeal, healMax: healMax, healMin: healMin, monsterType: monsterType, name: name, hitPoints: hitPoints, attackSpeed: attackSpeed, damageMax: damageMax, damageMin: damageMin, chanceToHit: chanceToHit)
+    }
+    static func rattle(monster: Monster, hero: Hero) {
+        var attackChance:Double = Double(arc4random_uniform(UInt32(100))) + 1
+        attackChance = attackChance / 100
+        if(attackChance <= 0.4) {
+            let hitDamage = Int(arc4random_uniform(UInt32(50))) + 75
+            print("Oh no! \(monster.name) rattled his bones at you!")
+            print("You got so scared his attack did \(hitDamage) damage!")
+            hero.hitPoints -= hitDamage
+            
+        } else {
+            print("\(monster.name) tried to scare you but you were too tough!")
+        }
     }
 }
 

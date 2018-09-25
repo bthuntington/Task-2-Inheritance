@@ -18,13 +18,23 @@ class Gremlin: Monster {
         let chanceToHeal = 0.4
         let healMin = 20
         let healMax = 40
+        let monsterType = "Gremlin"
         
-        super.init(chanceToHeal: chanceToHeal, healMax: healMax, healMin: healMin, name: name, hitPoints: hitPoints, attackSpeed: attackSpeed, damageMax: damageMax, damageMin: damageMin, chanceToHit: chanceToHit)
+        super.init(chanceToHeal: chanceToHeal, healMax: healMax, healMin: healMin, monsterType: monsterType, name: name, hitPoints: hitPoints, attackSpeed: attackSpeed, damageMax: damageMax, damageMin: damageMin, chanceToHit: chanceToHit)
     }
     
-    func attack() -> Int {
-        //change code to fit gremlin
-        return 0
+    static func bite(monster: Monster, hero: Hero) {
+        var attackChance:Double = Double(arc4random_uniform(UInt32(100))) + 1
+        attackChance = attackChance / 100
+        if(attackChance <= 0.6) {
+            let hitDamage = Int(arc4random_uniform(UInt32(50))) + 75
+            print("Oh no! \(monster.name) jumped on you and started biting you!")
+            print("His attack did \(hitDamage) damage!")
+            hero.hitPoints -= hitDamage
+            
+        } else {
+            print("\(monster.name) tried to jump on you but you dodged just in time!")
+        }
     }
 
 }

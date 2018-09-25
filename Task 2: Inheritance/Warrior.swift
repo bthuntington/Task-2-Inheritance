@@ -12,7 +12,7 @@ class Warrior: Hero {
     
     init(name: String) {
         let heroClass = "Warrior"
-        let hitPoints = 25
+        let hitPoints = 55
         let attackSpeed = 4
         let chanceToHit = 0.8
         let damageMin = 35
@@ -33,9 +33,15 @@ class Warrior: Hero {
             print("Your attack did \(hitDamage) damage")
             //add damage to enemy
             monster.hitPoints -= hitDamage
+            if monster.hitPoints > 0 {
+                monster.heal(monster: monster)
+            }
             
         } else {
             print("Whoops, looks like you slipped on a banana peel and your attack failed.")
+            if monster.hitPoints > 0 {
+                monster.heal(monster: monster)
+            }
         }
     }
     
@@ -44,7 +50,7 @@ class Warrior: Hero {
         while playerTurns == 1 {
             print("""
                 
-                ~~~~~ It's \(hero.name)'s turn (1 of 1)
+                ~~~~~ It's \(hero.name)'s turn (1 of 1) ~~~~~
                 \(hero.name) has \(hero.hitPoints) HP
                 \(opponent.name) has \(opponent.hitPoints) HP
                 
@@ -74,7 +80,7 @@ class Warrior: Hero {
                 print("Wrong input")
             }
             print("Press enter to continue...")
-            let response = readLine()
+            _ = readLine()
         }
         return 0
     }

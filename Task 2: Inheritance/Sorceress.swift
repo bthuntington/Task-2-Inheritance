@@ -21,11 +21,15 @@ class Sorceress: Hero {
         super.init(name: name, hitPoints: hitPoints, attackSpeed: attackSpeed, damageMax: damageMax, damageMin: damageMin, chanceToHit: chanceToHit, block: block, turns_per_round: turns_per_round, heroClass: heroClass)
     }
     //sorceress special attack
-    func heal (hero: Sorceress) {
-        let pointsHealed = Int(arc4random_uniform(UInt32(15))) + 5
+    func heal (hero: Sorceress, monster: Monster) {
+        let pointsHealed = Int(arc4random_uniform(UInt32(20))) + 5
         print("Your spell healed \(pointsHealed) hit points")
+        //adds pointsHealed to hero hp
         hero.hitPoints += pointsHealed
-        //add pointsHealed to hero hp
+        //monster has chance to heal
+        if monster.hitPoints > 0 {
+            monster.heal(monster: monster)
+        }
     }
     
     func attack (hero: Sorceress, opponent: Monster) -> Int {
@@ -33,7 +37,7 @@ class Sorceress: Hero {
         while playerTurns == 1 {
             print("""
                 
-                ~~~~~ It's \(hero.name)'s turn (1 of 1)
+                ~~~~~ It's \(hero.name)'s turn (1 of 1) ~~~~~
                 \(hero.name) has \(hero.hitPoints) HP
                 \(opponent.name) has \(opponent.hitPoints) HP
                 
@@ -54,7 +58,7 @@ class Sorceress: Hero {
                     playerTurns = 0
                 //heals sorceress
                 } else if attackChoice == 2 {
-                    hero.heal(hero: hero)
+                    hero.heal(hero: hero, monster: opponent)
                     playerTurns = 0
                 } else {
                     print("Okay, goodbye")
@@ -64,7 +68,7 @@ class Sorceress: Hero {
                 print("Wrong input")
             }
             print("Press enter to continue...")
-            let response = readLine()
+            _ = readLine()
         }
         return 0
     }
