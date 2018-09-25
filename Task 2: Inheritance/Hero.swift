@@ -1,10 +1,14 @@
 //
 //  Hero.swift
 //  Task 2: Inheritance
-//
+//  Programming Assignment 3- Task 2: Inheritance
 //  Created by Brooke Huntington on 9/21/18.
 //  Copyright © 2018 Brooke Huntington. All rights reserved.
-//
+//  CPSC 315-01, Fall 2018
+//  This file is a subclass of DungeonCharacter
+//  that contains the properies any hero should have,
+//  as well as a generic attack monster function and
+//  a function to get a the hero's name from the user
 
 import Foundation
 
@@ -21,7 +25,7 @@ class Hero: DungeonCharacter {
         self.heroClass = heroClass
         super.init(name: name, hitPoints: hitPoints, attackSpeed: attackSpeed, damageMax: damageMax, damageMin: damageMin, chanceToHit: chanceToHit)
     }
-    
+    //gets character's name from the user
     static func getCharacterName () -> String {
         
         print("What is the name of your hero?")
@@ -36,12 +40,10 @@ class Hero: DungeonCharacter {
         }
         return characterName
     }
-    
+    // attacks monsters
     func attackMonster (hero: Hero, monster: Monster) {
         var attackChance:Double = Double(arc4random_uniform(UInt32(100))) + 1
         attackChance = attackChance / 100
-        print(attackChance)
-        print(hero.chanceToHit)
         // determines if the attack succeeds
         let difference = hero.damageMax - hero.damageMin
         let hitDamage = Int(arc4random_uniform(UInt32(difference))) + hero.damageMin

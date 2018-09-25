@@ -1,10 +1,14 @@
 //
 //  Gremlin.swift
-//  Task 2: Inheritance
-//
+//  Task 2: Inheritances
+//  Programming Assignment 3- Task 2: Inheritance
 //  Created by Brooke Huntington on 9/21/18.
 //  Copyright © 2018 Brooke Huntington. All rights reserved.
-//
+//  CPSC 315-01, Fall 2018
+//  This file is a subclass of Monster that
+//  has the statistics for the monster type,
+//  a special attack function, and three gremlin
+//  instances
 
 import Foundation
 
@@ -22,7 +26,7 @@ class Gremlin: Monster {
         
         super.init(chanceToHeal: chanceToHeal, healMax: healMax, healMin: healMin, monsterType: monsterType, name: name, hitPoints: hitPoints, attackSpeed: attackSpeed, damageMax: damageMax, damageMin: damageMin, chanceToHit: chanceToHit)
     }
-    
+    //special gremlin attack
     static func bite(monster: Monster, hero: Hero) {
         var attackChance:Double = Double(arc4random_uniform(UInt32(100))) + 1
         attackChance = attackChance / 100

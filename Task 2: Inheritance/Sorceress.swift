@@ -1,11 +1,13 @@
 //
 //  Sorceress.swift
 //  Task 2: Inheritance
-//
+//  Programming Assignment 3- Task 2: Inheritance
 //  Created by Brooke Huntington on 9/21/18.
 //  Copyright © 2018 Brooke Huntington. All rights reserved.
-//
-
+//  CPSC 315-01, Fall 2018
+//  This is a subclass of the Hero class.
+//  It contains the initial stats for every sorceress,
+//  a heal function, and sorceress attack function
 import Foundation
 
 class Sorceress: Hero {
@@ -20,7 +22,7 @@ class Sorceress: Hero {
         let turns_per_round = 0
         super.init(name: name, hitPoints: hitPoints, attackSpeed: attackSpeed, damageMax: damageMax, damageMin: damageMin, chanceToHit: chanceToHit, block: block, turns_per_round: turns_per_round, heroClass: heroClass)
     }
-    //sorceress special attack
+    //sorceress special attack (a heal)
     func heal (hero: Sorceress, monster: Monster) {
         let pointsHealed = Int(arc4random_uniform(UInt32(20))) + 5
         print("Your spell healed \(pointsHealed) hit points")

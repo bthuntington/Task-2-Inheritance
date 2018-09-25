@@ -1,22 +1,18 @@
 //
 //  Ogre.swift
 //  Task 2: Inheritance
-//
+//  Programming Assignment 3- Task 2: Inheritance
 //  Created by Brooke Huntington on 9/21/18.
 //  Copyright © 2018 Brooke Huntington. All rights reserved.
-//
-
+//  CPSC 315-01, Fall 2018
+//  This file is a subclass of Monster that
+//  has the statistics for the monster type,
+//  a special attack function, and three ogre
+//  instances
 import Foundation
 
 class Ogre: Monster {
-    //    Hit points: 200
-    //    Attack speed: 2
-    //    Chance to hit: 0.6 (60%)
-    //    Minimum damage: 30
-    //    Maximum damage: 60
-    //    Chance to heal: 0.1 (10%)
-    //    Minimum heal points: 30
-    //    Maximum heal points: 60
+
     init(name: String) {
         let hitPoints = 200
         let attackSpeed = 2
@@ -30,6 +26,7 @@ class Ogre: Monster {
         
         super.init(chanceToHeal: chanceToHeal, healMax: healMax, healMin: healMin, monsterType: monsterType, name: name, hitPoints: hitPoints, attackSpeed: attackSpeed, damageMax: damageMax, damageMin: damageMin, chanceToHit: chanceToHit)
     }
+    //special ogre attack
     static func smash(monster: Monster, hero: Hero) {
         var attackChance:Double = Double(arc4random_uniform(UInt32(100))) + 1
         attackChance = attackChance / 100

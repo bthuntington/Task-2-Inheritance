@@ -1,10 +1,13 @@
 //
 //  DungeonCharacter .swift
 //  Task 2: Inheritance
-//
-//  Created by Brooke Huntington on 9/14/18.
+//  Programming Assignment 3- Task 2: Inheritance
+//  Created by Brooke Huntington on 9/21/18.
 //  Copyright © 2018 Brooke Huntington. All rights reserved.
-//
+//  CPSC 315-01, Fall 2018
+//  This contains the DungeonCharacter class
+//  with the generic properties all other subclasses
+//  will need as well as a generic attack function
 
 import Foundation
 
@@ -27,18 +30,16 @@ class DungeonCharacter {
         self.chanceToHit = chanceToHit
     }
     
-    //First checks if the character can attack (based on chance to hit)
-    //If it can, a hit in the range of minimum to maximum damage is generated and applied to opponent
-    //User should be informed of what happens
-    //If it cannot attack, a message should be displayed that says the attack failed
-    
+    // basic attack function
     func attack (character1: DungeonCharacter, character2: DungeonCharacter) {
+        //First checks if the character can attack (based on chance to hit)
         var attackChance:Double = Double(arc4random_uniform(UInt32(100))) + 1
         attackChance = attackChance / 100
         print(attackChance)
         print(chanceToHit)
-        var difference = damageMax - damageMin
-        var hitDamage = Int(arc4random_uniform(UInt32(difference))) + damageMin
+        let difference = damageMax - damageMin
+        let hitDamage = Int(arc4random_uniform(UInt32(difference))) + damageMin
+        //If it can, a hit in the range of minimum to maximum damage is generated and applied to opponent
         if (attackChance >= chanceToHit) {
             //did they block- do the same things as attackChance
             //damage applied to opponent

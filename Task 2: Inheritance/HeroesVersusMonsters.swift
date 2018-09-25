@@ -1,15 +1,17 @@
 //
 //  HeroesVersusMonsters.swift
 //  Task 2: Inheritance
-//
+//  Programming Assignment 3- Task 2: Inheritance
 //  Created by Brooke Huntington on 9/21/18.
 //  Copyright © 2018 Brooke Huntington. All rights reserved.
-//
+//  CPSC 315-01, Fall 2018
+//  This file contains the main game logic in playGame()
+//  as well as a few helper functions.
 
 import Foundation
 
 class HeroesVersusMonsters {
-    
+    // starts game
     static func playGame () {
         var playAgain = 1
         while playAgain == 1 {
@@ -51,7 +53,7 @@ class HeroesVersusMonsters {
                                     //monster attacks
                                     if opponent.hitPoints > 0 {
                                         opponent.attackHero(monster: opponent, hero: warrior)
-                                        // warrior is dead
+                                        // check if warrior is dead
                                         if warrior.hitPoints <= 0 {
                                             print("\(opponent.name) killed \(warrior.name)")
                                             inGame = 1
@@ -105,6 +107,7 @@ class HeroesVersusMonsters {
                         let name = Hero.getCharacterName()
                         let sorceress = Sorceress(name: name)
                         var gameStillGoing = 0
+                        //selects random opponent
                         let opponent = selectOpponent()
                         print("Your hero is battling \(opponent.name)")
                         print("Press enter to continue...")
@@ -123,9 +126,9 @@ class HeroesVersusMonsters {
                                     //var playerTurns = 1
                                     inGame = sorceress.attack(hero: sorceress, opponent: opponent)
                                     //monster attacks
-                                    if opponent.hitPoints > 0 {
+                                    if opponent.hitPoints > 0 && inGame == 0 {
                                         opponent.attackHero(monster: opponent, hero: sorceress)
-                                        // warrior is dead
+                                        // checks if sorceress is dead
                                         if sorceress.hitPoints <= 0 {
                                             inGame = 1
                                             gameStillGoing = 1
@@ -141,9 +144,9 @@ class HeroesVersusMonsters {
                                 var inGame = 0
                                 while inGame == 0 {
                                     opponent.attackHero(monster: opponent, hero: sorceress)
+                                    //check if sorceress is dead
                                     if sorceress.hitPoints <= 0 {
                                         print("\(opponent.name) killed \(sorceress.name)")
-                                        //playerTurns = 0
                                         gameStillGoing = 1
                                         inGame = 1
                                         print("Press enter to continue...")
@@ -152,6 +155,7 @@ class HeroesVersusMonsters {
                                         print("Press enter to continue...")
                                         _ = readLine()
                                         inGame = sorceress.attack(hero: sorceress, opponent: opponent)
+                                        //checks if monster is dead
                                         if opponent.hitPoints <= 0 {
                                             print("You defeated \(opponent.name)")
                                             inGame = 1
@@ -187,17 +191,16 @@ class HeroesVersusMonsters {
                         while(gameStillGoing == 0) {
                             let heroSpeed = thief.attackSpeed
                             let monsterSpeed = opponent.attackSpeed
-                            print("thief speed: \(heroSpeed) monster speed: \(monsterSpeed)")
                             let turn = whoGoesNext(hero: heroSpeed, monster: monsterSpeed)
                             thief.turns_per_round = turn
-                            //thief gets to attack three times
+                            //thief gets to attack 1, 2, or 3 times
                             if turn == 3 || turn == 2 || turn == 1 {
                                 while inGame == 0 {
                                     inGame = thief.attack(hero: thief, opponent: opponent)
                                     //monster attacks
-                                    if opponent.hitPoints > 0 {
+                                    if opponent.hitPoints > 0 && inGame == 0 {
                                         opponent.attackHero(monster: opponent, hero: thief)
-                                        // warrior is dead
+                                        // checks if thief is dead
                                         if thief.hitPoints <= 0 {
                                             inGame = 1
                                             gameStillGoing = 1
@@ -234,14 +237,21 @@ class HeroesVersusMonsters {
             }
         }
     }
-    
+    // randomly selects opponent
     static func selectOpponent() -> Monster {
+        var opponent: Monster
         let randomMonster = Int(arc4random_uniform(UInt32(3)))
-        print(randomMonster)
-        let opponent = monsterArray[randomMonster]
+        if randomMonster == 1 {
+            opponent = monsterArray1[randomMonster]
+        } else if randomMonster == 2 {
+            opponent = monsterArray2[randomMonster]
+        } else {
+            opponent = monsterArray3[randomMonster]
+        }
         return opponent
     }
-    
+    // determines if the hero or monster goes first and
+    // how many turns they get
     static func whoGoesNext(hero: Int, monster: Int) -> Int {
         //hero gets three attacks
         if hero >= (monster * 3) {
