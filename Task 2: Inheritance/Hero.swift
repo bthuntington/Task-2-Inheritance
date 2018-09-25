@@ -48,7 +48,7 @@ class Hero: DungeonCharacter {
         if (attackChance <= hero.chanceToHit) {
             //did they block- do the same things as attackChance
             //damage applied to opponent
-            print("Opponent hit for \(hitDamage) points")
+            print("\(monster.name) hit for \(hitDamage) points")
             monster.hitPoints -= hitDamage
             //return hitDamage
         } else {

@@ -45,6 +45,8 @@ class Warrior: Hero {
             print("""
                 
                 ~~~~~ It's \(hero.name)'s turn (1 of 1)
+                \(hero.name) has \(hero.hitPoints) HP
+                \(opponent.name) has \(opponent.hitPoints) HP
                 
                 Please choose your attack from the following menu
                 1) Normal attack

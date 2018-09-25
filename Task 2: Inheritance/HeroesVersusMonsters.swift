@@ -36,7 +36,7 @@ class HeroesVersusMonsters {
                 while(gameStillGoing == 0) {
                     let heroSpeed = warrior.attackSpeed
                     let monsterSpeed = opponent.attackSpeed
-                    var turn = whoGoesNext(hero: heroSpeed, monster: monsterSpeed)
+                    let turn = whoGoesNext(hero: heroSpeed, monster: monsterSpeed)
                     //player gets one turn
                     if turn == 2 {
                         //variable for exiting loop when
@@ -60,27 +60,36 @@ class HeroesVersusMonsters {
                         print("Game is over")
                     //monster goes first
                     } else {
-                        var playerTurns = 0
-                        print("""
-                            
-                        ~~~~~ It's \(opponent.name)'s turn
-                        """)
-                        opponent.attackHero(monster: opponent, hero: warrior)
-                        if warrior.hitPoints <= 0 {
-                            print("Monster killed \(warrior.name)")
-                            playerTurns = 0
+                        var inGame = 0
+                        while inGame == 0 {
+                            opponent.attackHero(monster: opponent, hero: warrior)
+                            if warrior.hitPoints <= 0 {
+                                print("\(opponent.name) killed \(warrior.name)")
+                                //playerTurns = 0
+                                gameStillGoing = 1
+                                inGame = 1
+                                print("Press enter to continue...")
+                                let response = readLine()
+                            } else {
+                                print("Press enter to continue...")
+                                let response = readLine()
+                                warrior.attack(hero: warrior, opponent: opponent)
+                                if opponent.hitPoints <= 0 {
+                                    print("You defeated \(opponent.name)")
+                                    inGame = 1
+                                    gameStillGoing = 1
+                                }
+                            }
                         }
-                        print("Press enter to continue...")
-                        let response = readLine()
                     }
+                    gameStillGoing = 1
                 }
-                gameStillGoing = 1
             //sorceress class is choosen
             } else if (charChoice == 2) {
                 //get user's character name
                 let name = Hero.getCharacterName()
                 var sorceress = Sorceress(name: name)
-                 var gameStillGoing = 0
+                var gameStillGoing = 0
                 let opponent = selectOpponent()
                 print("Your hero is battling \(opponent.name)")
                 print("Press enter to continue...")
@@ -103,8 +112,9 @@ class HeroesVersusMonsters {
                                 // warrior is dead
                                 if sorceress.hitPoints <= 0 {
                                     inGame = 1
+                                    gameStillGoing = 1
                                 }
-                                //monster is dead - exit loop
+                            //monster is dead - exit loop
                             } else {
                                 inGame = 1
                                 gameStillGoing = 1
@@ -116,21 +126,22 @@ class HeroesVersusMonsters {
                         var inGame = 0
                         while inGame == 0 {
                             var playerTurns = 0
-                            print("""
-                                
-                                ~~~~~ It's \(opponent.name)'s turn
-                                """)
                             opponent.attackHero(monster: opponent, hero: sorceress)
                             if sorceress.hitPoints <= 0 {
-                                print("Monster killed \(sorceress.name)")
+                                print("\(opponent.name) killed \(sorceress.name)")
                                 //playerTurns = 0
                                 gameStillGoing = 1
+                                inGame = 1
+                                print("Press enter to continue...")
+                                let response = readLine()
                             } else {
                             print("Press enter to continue...")
                             let response = readLine()
                             sorceress.attack(hero: sorceress, opponent: opponent)
                                 if opponent.hitPoints <= 0 {
-                                    "You defeated \(opponent.name)"
+                                    print("You defeated \(opponent.name)")
+                                    inGame = 1
+                                    gameStillGoing = 1
                                 }
                             }
                         }
@@ -142,10 +153,69 @@ class HeroesVersusMonsters {
                 //get user's character name
                 let name = Hero.getCharacterName()
                 var thief = Thief(name: name)
+                var gameStillGoing = 0
+                var inGame = 0
                 let opponent = selectOpponent()
                 print("Your hero is battling \(opponent.name)")
+                print("Press enter to continue...")
+                let response = readLine()
+                while(gameStillGoing == 0) {
+                    let heroSpeed = thief.attackSpeed
+                    let monsterSpeed = opponent.attackSpeed
+                    print("thief speed: \(heroSpeed) monster speed: \(monsterSpeed)")
+                    let turn = whoGoesNext(hero: heroSpeed, monster: monsterSpeed)
+                    thief.turns_per_round = turn
+                    //thief gets to attack twice
+                    if turn == 2 {
+                        print("thief gets to attack twice")
+                        while inGame == 0 {
+                            inGame = thief.attack(hero: thief, opponent: opponent)
+                            //monster attacks
+                            if opponent.hitPoints > 0 {
+                                opponent.attackHero(monster: opponent, hero: thief)
+                                // warrior is dead
+                                if thief.hitPoints <= 0 {
+                                    inGame = 1
+                                    gameStillGoing = 1
+                                }
+                                //monster is dead - exit loop
+                            } else {
+                                inGame = 1
+                                gameStillGoing = 1
+                            }
+                        }
+                    //thief gets to atttack once
+                    } else if turn == 1 {
+                        print("thief gets to attack once")
+                        while inGame == 0 {
+                            //var playerTurns = 1
+                            inGame = thief.attack(hero: thief, opponent: opponent)
+                            //monster attacks
+                            if opponent.hitPoints > 0 {
+                                opponent.attackHero(monster: opponent, hero: thief)
+                                // warrior is dead
+                                if thief.hitPoints <= 0 {
+                                    inGame = 1
+                                    gameStillGoing = 1
+                                }
+                                //monster is dead - exit loop
+                            } else {
+                                inGame = 1
+                                gameStillGoing = 1
+                            }
+                        }
+                        print("Game is over")
+                    //monster attacks first
+                    } else if turn == 3{
+                        print("what is happening?")
+                    } else {
+                        print("Oops, that was not one of the choices")
+                    }
+                }
+                
+                
             } else {
-                print("Oops, that's not one the choices.")
+                print("Oops, that's not one of the choices.")
             }
         }
         }
@@ -160,15 +230,18 @@ class HeroesVersusMonsters {
     }
     
     static func whoGoesNext(hero: Int, monster: Int) -> Int {
+        //hero gets three attacks
+        if hero > (monster * 3) {
+            return 3
         //hero gets two turns
-        if hero > monster * 2 {
-            return 1
+        } else if hero > (monster * 2) {
+            return 2
         //hero get one turn
         } else if hero > monster {
-            return 2
-        //
+            return 1
+        // monster is faster and goes first
         } else {
-            return 3
+            return 0
         }
     }
     
